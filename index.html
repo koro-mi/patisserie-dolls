@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Patisserie Dolls — キャラクター設計書</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap');
 
@@ -16,7 +17,7 @@
   --red:   #C0392B;
   --warm:  #EAE3D4;
   --text:  #3A2828;
-  --muted: #9A7878;
+  --muted: #7A5858;
   --hint:  #C4A8A8;
   --border:#E8D8D0;
   --section-bg: #FFFCFA;
@@ -30,7 +31,7 @@ body {
   padding: 2rem 1.25rem 3rem;
   max-width: 680px;
   margin: 0 auto;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 header {
@@ -50,7 +51,7 @@ header h1 {
 }
 
 header p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.08em;
 }
@@ -65,10 +66,10 @@ header p {
 
 .section-head {
   background: #F5E8E4;
-  padding: 7px 14px;
-  font-size: 11px;
+  padding: 8px 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: #7A3A38;
+  color: #5A2A28;
   letter-spacing: 0.06em;
   border-bottom: 0.5px solid var(--border);
 }
@@ -83,8 +84,9 @@ header p {
 
 label {
   display: block;
-  font-size: 11px;
-  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #5A3A3A;
   margin-bottom: 4px;
   letter-spacing: 0.04em;
 }
@@ -138,7 +140,7 @@ textarea { resize: vertical; line-height: 1.7; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 
 .tag {
-  font-size: 11px;
+  font-size: 12px;
   padding: 4px 12px;
   border-radius: 99px;
   background: #F8F2EE;
@@ -158,26 +160,28 @@ textarea { resize: vertical; line-height: 1.7; }
 }
 
 .hint {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--hint);
   margin-top: 4px;
-  font-style: italic;
 }
 
 .export-area {
   margin-top: 2rem;
-  text-align: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .btn-export {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  letter-spacing: 0.1em;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.06em;
   padding: 10px 32px;
   background: #FAE8E6;
   border: 0.5px solid var(--rose);
   border-radius: 99px;
-  color: #7A3A38;
+  color: #5A2A28;
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -187,14 +191,13 @@ textarea { resize: vertical; line-height: 1.7; }
 .btn-reset {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 12px;
-  padding: 8px 20px;
+  font-size: 13px;
+  padding: 10px 20px;
   background: transparent;
   border: 0.5px solid var(--border);
   border-radius: 99px;
   color: var(--muted);
   cursor: pointer;
-  margin-left: 10px;
   transition: background 0.2s;
 }
 
@@ -228,8 +231,8 @@ textarea { resize: vertical; line-height: 1.7; }
   margin-top: 8px;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 400;
-  font-size: 13px;
-  padding: 9px;
+  font-size: 14px;
+  padding: 10px;
   background: #7A3A38;
   border: none;
   border-radius: 6px;
@@ -245,7 +248,7 @@ textarea { resize: vertical; line-height: 1.7; }
 footer {
   text-align: center;
   margin-top: 2.5rem;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--hint);
   letter-spacing: 0.06em;
 }
@@ -296,15 +299,13 @@ footer {
       <label>性格</label>
       <input type="text" id="personality" placeholder="例：明るく、ちょっぴり甘えん坊で人懐っこい">
     </div>
-    <div class="row2">
-      <div class="field">
-        <label>衣装デザイン</label>
-        <input type="text" id="costume" placeholder="例：生クリームドレス、苺の花の髪飾り">
-      </div>
-      <div class="field">
-        <label>装備アイテム</label>
-        <input type="text" id="weapon" placeholder="例：苺が刺さった大きなリボン付きフォーク">
-      </div>
+    <div class="field">
+      <label>衣装デザイン</label>
+      <input type="text" id="costume" placeholder="例：生クリームドレス、苺の花の髪飾り">
+    </div>
+    <div class="field">
+      <label>装備アイテム（シグネチャー小物）</label>
+      <input type="text" id="weapon" placeholder="例：苺が刺さった大きなリボン付きフォーク">
     </div>
     <div class="field">
       <label>ドール設定メモ</label>
@@ -313,6 +314,105 @@ footer {
     <div class="field">
       <label>キャラクターイメージメモ</label>
       <textarea id="chara-memo" rows="2" placeholder="自由記述"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- カラーパレット -->
+<div class="section">
+  <div class="section-head">■ カラーパレット（このキャラ固有）</div>
+  <div class="section-body">
+    <div class="field">
+      <label>メインカラー A（ベース）</label>
+      <div class="color-row">
+        <input type="color" id="color-a" value="#EAE3D4">
+        <input type="text" id="color-a-text" class="code" value="#EAE3D4">
+        <input type="text" id="color-a-name" class="name" placeholder="カラー名メモ">
+      </div>
+    </div>
+    <div class="field">
+      <label>メインカラー B（サブ）</label>
+      <div class="color-row">
+        <input type="color" id="color-b" value="#F4E8EB">
+        <input type="text" id="color-b-text" class="code" value="#F4E8EB">
+        <input type="text" id="color-b-name" class="name" placeholder="カラー名メモ">
+      </div>
+    </div>
+    <div class="field">
+      <label>アクセントカラー</label>
+      <div class="color-row">
+        <input type="color" id="color-c" value="#E2C1C2">
+        <input type="text" id="color-c-text" class="code" value="#E2C1C2">
+        <input type="text" id="color-c-name" class="name" placeholder="例：複数ある場合はメモ欄に記入">
+      </div>
+    </div>
+    <div class="field">
+      <label>肌・髪・瞳のトーンメモ</label>
+      <textarea id="tone-memo" rows="2" placeholder="例：肌：クリーム寄り白色 / 髪：薄茶色 / 瞳：赤（ややたれ目・ハイライト多め）"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- 衣装・アクセサリー -->
+<div class="section">
+  <div class="section-head">■ 衣装・アクセサリー</div>
+  <div class="section-body">
+    <div class="field">
+      <label>ヘッドアクセ</label>
+      <input type="text" id="head-acc" placeholder="例：苺の白い花の髪飾り、生クリームリボン">
+    </div>
+    <div class="field">
+      <label>リボンの位置</label>
+      <div class="tag-row" id="ribbon-tags">
+        <span class="tag" onclick="toggleTag(this)">髪</span>
+        <span class="tag" onclick="toggleTag(this)">耳</span>
+        <span class="tag" onclick="toggleTag(this)">首元</span>
+        <span class="tag" onclick="toggleTag(this)">肩</span>
+        <span class="tag" onclick="toggleTag(this)">腕</span>
+        <span class="tag" onclick="toggleTag(this)">袖→手首</span>
+        <span class="tag" onclick="toggleTag(this)">腰</span>
+        <span class="tag" onclick="toggleTag(this)">背中</span>
+        <span class="tag" onclick="toggleTag(this)">太もも</span>
+        <span class="tag" onclick="toggleTag(this)">足首</span>
+        <span class="tag" onclick="toggleTag(this)">スカート裾</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>生地テクスチャ / 素材感メモ</label>
+      <input type="text" id="texture" placeholder="例：ふわふわ柔らかい生地、フリル多め">
+    </div>
+  </div>
+</div>
+
+<!-- 背景テンプレート -->
+<div class="section">
+  <div class="section-head">■ 背景テンプレート</div>
+  <div class="section-body">
+    <div class="field">
+      <label>背景パターン</label>
+      <div class="tag-row" id="bg-pattern-tags">
+        <span class="tag active" onclick="selectTag(this,'bg-pattern-tags')">ドット</span>
+        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ギンガムチェック</span>
+        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">無地</span>
+        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ストライプ</span>
+        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">その他</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>背景パターン　自由記入</label>
+      <input type="text" id="bg-pattern-free" placeholder="例：花柄、星散らし など">
+    </div>
+    <div class="field">
+      <label>背景ベースカラー</label>
+      <div class="color-row">
+        <input type="color" id="color-bg" value="#FFF9F7">
+        <input type="text" id="color-bg-text" class="code" value="#FFF9F7">
+        <input type="text" id="color-bg-name" class="name" placeholder="例：メインBの淡色">
+      </div>
+    </div>
+    <div class="field">
+      <label>フレーム装飾</label>
+      <input type="text" id="frame" placeholder="例：レースリボン（ベースカラーAに近い色）">
     </div>
   </div>
 </div>
@@ -356,109 +456,6 @@ footer {
   </div>
 </div>
 
-<!-- カラーパレット -->
-<div class="section">
-  <div class="section-head">■ カラーパレット（このキャラ固有）</div>
-  <div class="section-body">
-    <div class="field">
-      <label>メインカラー A（ベース）</label>
-      <div class="color-row">
-        <input type="color" id="color-a" value="#EAE3D4">
-        <input type="text" id="color-a-text" class="code" value="#EAE3D4">
-        <input type="text" id="color-a-name" class="name" placeholder="カラー名メモ">
-      </div>
-    </div>
-    <div class="field">
-      <label>メインカラー B（サブ）</label>
-      <div class="color-row">
-        <input type="color" id="color-b" value="#F4E8EB">
-        <input type="text" id="color-b-text" class="code" value="#F4E8EB">
-        <input type="text" id="color-b-name" class="name" placeholder="カラー名メモ">
-      </div>
-    </div>
-    <div class="field">
-      <label>アクセントカラー</label>
-      <div class="color-row">
-        <input type="color" id="color-c" value="#E2C1C2">
-        <input type="text" id="color-c-text" class="code" value="#E2C1C2">
-        <input type="text" id="color-c-name" class="name" placeholder="例：#E2C1C2, #FFF2D9">
-      </div>
-    </div>
-    <div class="field">
-      <label>肌・髪・瞳のトーンメモ</label>
-      <textarea id="tone-memo" rows="2" placeholder="例：肌：クリーム寄り白色 / 髪：薄茶色 / 瞳：赤（ややたれ目・ハイライト多め）"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- 衣装・アクセサリー -->
-<div class="section">
-  <div class="section-head">■ 衣装・アクセサリー</div>
-  <div class="section-body">
-    <div class="field">
-      <label>ヘッドアクセ</label>
-      <input type="text" id="head-acc" placeholder="例：苺の白い花の髪飾り、生クリームリボン">
-    </div>
-    <div class="field">
-      <label>リボンの位置</label>
-      <div class="tag-row" id="ribbon-tags">
-        <span class="tag" onclick="toggleTag(this)">髪</span>
-        <span class="tag" onclick="toggleTag(this)">首元</span>
-        <span class="tag" onclick="toggleTag(this)">腰</span>
-        <span class="tag" onclick="toggleTag(this)">袖</span>
-        <span class="tag" onclick="toggleTag(this)">背中</span>
-        <span class="tag" onclick="toggleTag(this)">スカート裾</span>
-      </div>
-    </div>
-    <div class="field">
-      <label>生地テクスチャ / 素材感メモ</label>
-      <input type="text" id="texture" placeholder="例：ふわふわ柔らかい生地、フリル多め">
-    </div>
-    <div class="field">
-      <label>シグネチャー小物</label>
-      <input type="text" id="items" placeholder="例：苺が刺さった大きなリボン付きフォーク">
-    </div>
-  </div>
-</div>
-
-<!-- 背景テンプレート -->
-<div class="section">
-  <div class="section-head">■ 背景テンプレート</div>
-  <div class="section-body">
-    <div class="row2">
-      <div class="field">
-        <label>背景形状</label>
-        <div class="tag-row" id="bg-shape-tags">
-          <span class="tag" onclick="selectTag(this,'bg-shape-tags')">丸型</span>
-          <span class="tag active" onclick="selectTag(this,'bg-shape-tags')">正方形</span>
-        </div>
-      </div>
-      <div class="field">
-        <label>背景パターン</label>
-        <div class="tag-row" id="bg-pattern-tags">
-          <span class="tag active" onclick="selectTag(this,'bg-pattern-tags')">ドット</span>
-          <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ギンガムチェック</span>
-          <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">無地</span>
-          <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ストライプ</span>
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <label>背景ベースカラー</label>
-      <div class="color-row">
-        <input type="color" id="color-bg" value="#FFF9F7">
-        <input type="text" id="color-bg-text" class="code" value="#FFF9F7">
-        <input type="text" id="color-bg-name" class="name" placeholder="例：メインBの淡色">
-      </div>
-    </div>
-    <div class="field">
-      <label>フレーム装飾</label>
-      <input type="text" id="frame" placeholder="例：レースリボン（ベースカラーAに近い色）">
-    </div>
-    <p class="hint">X投稿サイズ（1600×2000px）に合わせて均等マージンを確保すること</p>
-  </div>
-</div>
-
 <!-- パティスリーランド世界観 -->
 <div class="section">
   <div class="section-head">■ パティスリーランド世界観（固定）</div>
@@ -476,7 +473,7 @@ footer {
     <div class="row2">
       <div class="field">
         <label>創造主</label>
-        <input type="text" value="パティシエ（お菓子に命を吹き込む魔法使い）" readonly>
+        <input type="text" value="パティシエ（お菓子に命を吹き込むあなた）" readonly>
       </div>
       <div class="field">
         <label>今後の展開</label>
@@ -486,27 +483,6 @@ footer {
     <div class="field">
       <label>世界観メモ（キャラ固有）</label>
       <textarea id="world-memo" rows="2" placeholder="このキャラ固有の世界観・設定メモ"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- クリスタ制作メモ -->
-<div class="section">
-  <div class="section-head">■ クリスタ制作メモ</div>
-  <div class="section-body">
-    <div class="row2">
-      <div class="field">
-        <label>キャンバスサイズ（固定）</label>
-        <input type="text" value="1600 × 2000px" readonly>
-      </div>
-      <div class="field">
-        <label>解像度（固定）</label>
-        <input type="text" value="300dpi" readonly>
-      </div>
-    </div>
-    <div class="field">
-      <label>制作メモ・気をつけること</label>
-      <textarea id="csp-memo" rows="3" placeholder="例：背景はキャラクターが出来上がってから考える。影色は同系色トーンダウンで。"></textarea>
     </div>
   </div>
 </div>
@@ -550,21 +526,27 @@ function getActiveTags(groupId) {
 function v(id) { return document.getElementById(id)?.value?.trim() || '未記入'; }
 
 function exportSheet() {
+  const patternTag = getActiveTags('bg-pattern-tags');
+  const patternFree = v('bg-pattern-free');
+  const patternText = patternFree !== '未記入'
+    ? patternTag + '（' + patternFree + '）'
+    : patternTag;
+
   const lines = [
     '=== Patisserie Dolls キャラクター設計書 ===',
     '',
     '■ 基本情報',
-    'キャラクター名：' + v('chara-name'),
-    '愛称：'         + v('nickname'),
-    'モチーフ：'     + v('motif'),
-    '誕生日：'       + v('birthday'),
-    '年齢イメージ：' + v('age'),
-    '性格：'         + v('personality'),
-    'チャームポイント：' + v('charm'),
-    '衣装デザイン：' + v('costume'),
-    '装備アイテム：' + v('weapon'),
-    'ドール設定：'   + v('doll-note'),
-    'イメージメモ：' + v('chara-memo'),
+    'キャラクター名：'       + v('chara-name'),
+    '愛称：'                 + v('nickname'),
+    'モチーフ：'             + v('motif'),
+    '誕生日：'               + v('birthday'),
+    '年齢イメージ：'         + v('age'),
+    '性格：'                 + v('personality'),
+    'チャームポイント：'     + v('charm'),
+    '衣装デザイン：'         + v('costume'),
+    '装備アイテム：'         + v('weapon'),
+    'ドール設定：'           + v('doll-note'),
+    'イメージメモ：'         + v('chara-memo'),
     '',
     '■ 共通仕様（固定）',
     '頭身：4頭身（ミニキャラ寄り）',
@@ -582,34 +564,27 @@ function exportSheet() {
     '肌・髪・瞳：' + v('tone-memo'),
     '',
     '■ 衣装・アクセサリー',
-    'ヘッドアクセ：'       + v('head-acc'),
-    'リボン位置：'         + getActiveTags('ribbon-tags'),
-    '生地テクスチャ：'     + v('texture'),
-    'シグネチャー小物：'   + v('items'),
+    'ヘッドアクセ：'     + v('head-acc'),
+    'リボン位置：'       + getActiveTags('ribbon-tags'),
+    '生地テクスチャ：'   + v('texture'),
     '',
     '■ 背景テンプレート',
-    '形状：'         + getActiveTags('bg-shape-tags'),
-    'パターン：'     + getActiveTags('bg-pattern-tags'),
+    'パターン：'     + patternText,
     '背景カラー：'   + v('color-bg-text') + '　' + v('color-bg-name'),
     'フレーム：'     + v('frame'),
     '',
     '■ パティスリーランド世界観（固定）',
     '地形・環境：雲は生クリーム、地面はクッキーやタルト生地',
     '天候：シロップの雨が降る',
-    '創造主：パティシエ（お菓子に命を吹き込む魔法使い）',
+    '創造主：パティシエ（お菓子に命を吹き込むあなた）',
     '今後の展開：タルト、モンブラン、マカロンなどの仲間が増える予定',
     '世界観メモ：' + v('world-memo'),
-    '',
-    '■ クリスタ制作メモ',
-    'キャンバス：1600 × 2000px（固定）',
-    '解像度：300dpi（固定）',
-    'メモ：' + v('csp-memo'),
   ];
 
-  const out = document.getElementById('output-box');
+  const out  = document.getElementById('output-box');
   const wrap = document.getElementById('output-wrap');
-  out.value = lines.join('\n');
-  out.rows = lines.length + 2;
+  out.value  = lines.join('\n');
+  out.rows   = lines.length + 2;
   wrap.classList.add('visible');
   wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -620,7 +595,6 @@ function exportSheet() {
 
 function copyText() {
   const out = document.getElementById('output-box');
-  out.select();
   navigator.clipboard.writeText(out.value).then(() => {
     const btn = document.getElementById('btn-copy');
     btn.textContent = 'コピーしました！';
@@ -634,8 +608,8 @@ function copyText() {
 
 function resetSheet() {
   ['chara-name','nickname','motif','birthday','age','personality','charm','costume','weapon',
-   'doll-note','chara-memo','head-acc','texture','items','frame','tone-memo','world-memo','csp-memo',
-   'color-a-name','color-b-name','color-c-name','color-bg-name'].forEach(id => {
+   'doll-note','chara-memo','head-acc','texture','frame','tone-memo','world-memo',
+   'color-a-name','color-b-name','color-c-name','color-bg-name','bg-pattern-free'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -644,8 +618,6 @@ function resetSheet() {
     document.getElementById(id + '-text').value = val;
   });
   document.querySelectorAll('#ribbon-tags .tag').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#bg-shape-tags .tag').forEach(t => t.classList.remove('active'));
-  document.querySelector('#bg-shape-tags .tag:nth-child(2)').classList.add('active');
   document.querySelectorAll('#bg-pattern-tags .tag').forEach(t => t.classList.remove('active'));
   document.querySelector('#bg-pattern-tags .tag:first-child').classList.add('active');
   document.getElementById('output-wrap').classList.remove('visible');
