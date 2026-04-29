@@ -1,627 +1,442 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Patisserie Dolls — キャラクター設計書</title>
-<link rel="icon" type="image/png" href="favicon.png">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご依頼について | koro*mi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf6f0;
+      --blush: #f5e0da;
+      --dusty-rose: #d4a0a0;
+      --mauve: #b07878;
+      --deep: #6b4848;
+      --ink: #3a2a2a;
+      --soft-gold: #c9a87c;
+      --pale-mint: #e8f0ec;
+      --white: #ffffff;
+    }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-:root {
-  --cream: #FFFEFA;
-  --blush: #FFEBE5;
-  --rose:  #E2C1C2;
-  --red:   #C0392B;
-  --warm:  #EAE3D4;
-  --text:  #3A2828;
-  --muted: #7A5858;
-  --hint:  #C4A8A8;
-  --border:#E8D8D0;
-  --section-bg: #FFFCFA;
-}
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      line-height: 1.9;
+      min-height: 100vh;
+    }
 
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  background: var(--cream);
-  color: var(--text);
-  padding: 2rem 1.25rem 3rem;
-  max-width: 680px;
-  margin: 0 auto;
-  font-size: 14px;
-}
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(212,160,160,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201,168,124,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 60% 10%, rgba(245,224,218,0.12) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 0.5px solid var(--rose);
-}
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(176,120,120,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-header h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  color: var(--text);
-  margin-bottom: 4px;
-}
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
 
-header p {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
+    header {
+      text-align: center;
+      margin-bottom: 64px;
+      animation: fadeDown 0.8s ease both;
+    }
 
-.section {
-  background: var(--section-bg);
-  border: 0.5px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 1.25rem;
-  overflow: hidden;
-}
+    .site-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--mauve);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
 
-.section-head {
-  background: #F5E8E4;
-  padding: 8px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #5A2A28;
-  letter-spacing: 0.06em;
-  border-bottom: 0.5px solid var(--border);
-}
+    .site-name span { color: var(--soft-gold); }
 
-.section-body { padding: 14px; }
+    .tagline {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.75rem;
+      color: var(--dusty-rose);
+      letter-spacing: 0.3em;
+    }
 
-.field { margin-bottom: 12px; }
-.field:last-child { margin-bottom: 0; }
+    .header-divider {
+      margin: 20px auto 0;
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--dusty-rose), transparent);
+    }
 
-.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    nav {
+      text-align: center;
+      margin-bottom: 64px;
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
 
-label {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 400;
-  color: #5A3A3A;
-  margin-bottom: 4px;
-  letter-spacing: 0.04em;
-}
+    nav a {
+      display: inline-block;
+      margin: 0 12px;
+      font-size: 0.78rem;
+      color: var(--mauve);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 0.3s, color 0.3s;
+    }
 
-input[type="text"], textarea {
-  width: 100%;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  padding: 7px 10px;
-  background: #FFFDF8;
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  transition: border-color 0.2s;
-  outline: none;
-}
+    nav a:hover { color: var(--deep); border-color: var(--dusty-rose); }
+    nav a.current { color: var(--deep); border-color: var(--soft-gold); }
 
-input[type="text"]:focus, textarea:focus {
-  border-color: var(--rose);
-}
+    section {
+      margin-bottom: 56px;
+      animation: fadeUp 0.7s ease both;
+    }
 
-input[readonly] {
-  background: #F8F2EE;
-  color: var(--hint);
-  cursor: default;
-}
+    section:nth-child(1) { animation-delay: 0.15s; }
+    section:nth-child(2) { animation-delay: 0.25s; }
+    section:nth-child(3) { animation-delay: 0.35s; }
 
-textarea { resize: vertical; line-height: 1.7; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
 
-.color-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    .section-label::before {
+      content: '';
+      flex: 0 0 24px;
+      height: 1px;
+      background: var(--dusty-rose);
+    }
 
-.color-row input[type="color"] {
-  width: 32px;
-  height: 32px;
-  padding: 2px;
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  background: #FFFDF8;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    .section-label h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      color: var(--mauve);
+      white-space: nowrap;
+    }
 
-.color-row .code { width: 90px; flex-shrink: 0; }
-.color-row .name { flex: 1; }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--dusty-rose), transparent);
+    }
 
-.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(212,160,160,0.25);
+      border-radius: 12px;
+      padding: 32px 36px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 24px rgba(107,72,72,0.05);
+    }
 
-.tag {
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 99px;
-  background: #F8F2EE;
-  border: 0.5px solid var(--border);
-  color: var(--muted);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-}
+    .card p {
+      font-size: 0.9rem;
+      margin-bottom: 1.2em;
+    }
 
-.tag.active {
-  background: #FAE8E6;
-  border-color: var(--rose);
-  color: #7A3A38;
-}
+    .card p:last-child { margin-bottom: 0; }
 
-.hint {
-  font-size: 11px;
-  color: var(--hint);
-  margin-top: 4px;
-}
+    .highlight-box {
+      background: rgba(245,224,218,0.35);
+      border-left: 3px solid var(--dusty-rose);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.875rem;
+    }
 
-.export-area {
-  margin-top: 2rem;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
+    .values-list { list-style: none; }
 
-.btn-export {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  padding: 10px 32px;
-  background: #FAE8E6;
-  border: 0.5px solid var(--rose);
-  border-radius: 99px;
-  color: #5A2A28;
-  cursor: pointer;
-  transition: background 0.2s;
-}
+    .values-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(212,160,160,0.18);
+      font-size: 0.9rem;
+    }
 
-.btn-export:hover { background: #F5D8D4; }
+    .values-list li:last-child { border-bottom: none; }
 
-.btn-reset {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 13px;
-  padding: 10px 20px;
-  background: transparent;
-  border: 0.5px solid var(--border);
-  border-radius: 99px;
-  color: var(--muted);
-  cursor: pointer;
-  transition: background 0.2s;
-}
+    .values-list li::before {
+      content: '✦';
+      color: var(--dusty-rose);
+      font-size: 0.65rem;
+      flex-shrink: 0;
+      margin-top: 0.35em;
+    }
 
-.btn-reset:hover { background: #F8F2EE; }
+    .commission-grid { display: grid; gap: 16px; }
 
-.output-wrap {
-  margin-top: 1.5rem;
-  display: none;
-}
+    .commission-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(212,160,160,0.2);
+      border-radius: 10px;
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 16px;
+      align-items: start;
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
 
-.output-wrap.visible { display: block; }
+    .commission-card:hover {
+      box-shadow: 0 4px 20px rgba(176,120,120,0.15);
+      border-color: var(--dusty-rose);
+      transform: translateY(-2px);
+    }
 
-.output-box {
-  width: 100%;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.8;
-  padding: 14px;
-  background: #FFFCFA;
-  border: 0.5px solid var(--border);
-  border-radius: 10px;
-  color: var(--text);
-  resize: none;
-  white-space: pre-wrap;
-}
+    .commission-icon {
+      grid-row: 1 / 4;
+      width: 40px;
+      height: 40px;
+      background: var(--blush);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
 
-.btn-copy {
-  display: block;
-  width: 100%;
-  margin-top: 8px;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  padding: 10px;
-  background: #7A3A38;
-  border: none;
-  border-radius: 6px;
-  color: #FFFEFA;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  transition: background 0.2s;
-}
+    .commission-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 4px;
+    }
 
-.btn-copy:hover { background: #5A2A28; }
-.btn-copy.copied { background: #5A8A5A; }
+    .commission-desc {
+      font-size: 0.82rem;
+      color: #7a5c5c;
+      line-height: 1.7;
+    }
 
-footer {
-  text-align: center;
-  margin-top: 2.5rem;
-  font-size: 11px;
-  color: var(--hint);
-  letter-spacing: 0.06em;
-}
-</style>
+    .commission-url {
+      font-size: 0.72rem;
+      color: var(--dusty-rose);
+      margin-top: 6px;
+      word-break: break-all;
+    }
+
+    .direct-card {
+      background: linear-gradient(135deg, rgba(245,224,218,0.5), rgba(232,240,236,0.5));
+      border: 1px solid rgba(212,160,160,0.3);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+
+    .direct-card .commission-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--deep);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .direct-card .commission-desc {
+      font-size: 0.82rem;
+      color: #7a5c5c;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .btn-direct {
+      display: inline-block;
+      background: var(--mauve);
+      color: white;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      padding: 9px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-direct:hover { background: var(--deep); transform: translateY(-1px); }
+
+    .notice {
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(212,160,160,0.2);
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-size: 0.8rem;
+      color: #8a6a6a;
+      line-height: 1.9;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .notice strong {
+      display: block;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: var(--mauve);
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 48px;
+      border-top: 1px solid rgba(212,160,160,0.2);
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    footer p { font-size: 0.72rem; color: var(--dusty-rose); letter-spacing: 0.15em; }
+    footer a { color: var(--dusty-rose); text-decoration: none; }
+    footer a:hover { color: var(--mauve); }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .wrapper { padding: 40px 16px 80px; }
+      .card { padding: 24px 20px; }
+      .commission-card { padding: 18px 20px; }
+      nav a { margin: 0 8px; font-size: 0.72rem; }
+    }
+  </style>
 </head>
 <body>
+  <div class="wrapper">
 
-<header>
-  <h1>Patisserie Dolls</h1>
-  <p>キャラクター設計書 — Character Design Sheet</p>
-</header>
+    <header>
+      <div class="site-name">koro<span>*</span>mi</div>
+      <div class="tagline">illustration &amp; creative works</div>
+      <div class="header-divider"></div>
+    </header>
 
-<!-- 基本情報 -->
-<div class="section">
-  <div class="section-head">■ 基本情報</div>
-  <div class="section-body">
-    <div class="row2">
-      <div class="field">
-        <label>キャラクター名</label>
-        <input type="text" id="chara-name" placeholder="例：Fraisette">
+    <nav>
+      <a href="./index.html" class="current">ご依頼について</a>
+      <a href="./patisserie-dolls/">Patisserie Dolls</a>
+    </nav>
+
+    <section>
+      <div class="section-label"><h2>制作について</h2></div>
+      <div class="card">
+        <p>好きな作品や、これまでに触れてきた作品をもとにした二次創作や、オリジナルの創作イラストを中心に制作しています。</p>
+        <p>これまでに触れてきた作品としては、「ラグナロクオリジン（ラグオリ）」「ラグナロクオンライン（RO）」を中心に、一部のゲーム・アニメ作品などがあります。</p>
+        <p>上記以外の作品については、リクエスト内容を拝見しながら、その中で「描きたい」と感じたものを大切に、ひとつひとつ制作しています。</p>
+        <div class="highlight-box">
+          二次創作をご希望の場合は、キャラクターの前後左右や装備の詳細がわかる資料を多めにご用意いただけると、よりイメージに近い仕上がりに繋がります。
+        </div>
+        <p>現在はCLIP STUDIO PAINTの習熟期間中のため、当面はリクエスト形式のみでお受けしております。納品形式は背景なしのPNGデータとなります。</p>
       </div>
-      <div class="field">
-        <label>愛称</label>
-        <input type="text" id="nickname" placeholder="例：フレ、フレちゃん">
+    </section>
+
+    <section>
+      <div class="section-label"><h2>大切にしていること</h2></div>
+      <div class="card">
+        <ul class="values-list">
+          <li>本業と並行して制作を行っているため、創作に充てられる時間が限られています。そのため、すべてのリクエストにお応えすることが難しい場合があります。</li>
+          <li>いただいたご依頼の中から、「今、この子を描きたい」と心に響いたものを大切に選び、一つひとつ丁寧に制作しています。</li>
+        </ul>
       </div>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label>モチーフ（ケーキ種）</label>
-        <input type="text" id="motif" placeholder="例：いちごショートケーキ">
+    </section>
+
+    <section>
+      <div class="section-label"><h2>ご依頼方法</h2></div>
+
+      <div class="commission-grid">
+
+        <a class="commission-card" href="https://skeb.jp/@koro_mi_illust" target="_blank" rel="noopener">
+          <div class="commission-icon">✉</div>
+          <div class="commission-name">Skeb</div>
+          <div class="commission-desc">打ち合わせなし・リテイクなしの気軽なリクエスト形式です。おまかせで描いてほしい方におすすめ。</div>
+          <div class="commission-url">skeb.jp/@koro_mi_illust</div>
+        </a>
+
+        <a class="commission-card" href="https://tsunagu.cloud/users/koro_mi_illust" target="_blank" rel="noopener">
+          <div class="commission-icon">🌿</div>
+          <div class="commission-name">つなぐ</div>
+          <div class="commission-desc">内容のすり合わせやスケジュール調整をしながら進めたい方におすすめです。再提案機能で柔軟に対応できます。</div>
+          <div class="commission-url">tsunagu.cloud/users/koro_mi_illust</div>
+        </a>
+
+        <a class="commission-card" href="https://www.pixiv.net/users/125273197" target="_blank" rel="noopener">
+          <div class="commission-icon">🎨</div>
+          <div class="commission-name">pixiv リクエスト</div>
+          <div class="commission-desc">pixivで作品を見てくださっている方向けのリクエスト窓口です。</div>
+          <div class="commission-url">pixiv.net/users/125273197</div>
+        </a>
+
       </div>
-      <div class="field">
-        <label>誕生日</label>
-        <input type="text" id="birthday" placeholder="例：4月12日">
+
+      <div class="direct-card">
+        <div class="commission-name">
+          <span>💌</span> サイトから直接ご依頼
+        </div>
+        <div class="commission-desc">ご依頼内容や条件を確認した上で進めたい方は、こちらよりお問い合わせください。</div>
+        <a class="btn-direct" href="https://koro-mi.github.io/index.html">お問い合わせはこちら</a>
       </div>
+
+    </section>
+
+    <div class="notice">
+      <strong>— NOTE —</strong>
+      作品の無断転載・自作発言・AI学習への利用はすべて禁止しております。<br>
+      No repost · No AI learning · All rights reserved.
     </div>
-    <div class="row2">
-      <div class="field">
-        <label>年齢イメージ</label>
-        <input type="text" id="age" placeholder="例：8歳">
-      </div>
-      <div class="field">
-        <label>チャームポイント</label>
-        <input type="text" id="charm" placeholder="例：頬のそばかす">
-      </div>
-    </div>
-    <div class="field">
-      <label>性格</label>
-      <input type="text" id="personality" placeholder="例：明るく、ちょっぴり甘えん坊で人懐っこい">
-    </div>
-    <div class="field">
-      <label>衣装デザイン</label>
-      <input type="text" id="costume" placeholder="例：生クリームドレス、苺の花の髪飾り">
-    </div>
-    <div class="field">
-      <label>装備アイテム（シグネチャー小物）</label>
-      <input type="text" id="weapon" placeholder="例：苺が刺さった大きなリボン付きフォーク">
-    </div>
-    <div class="field">
-      <label>ドール設定メモ</label>
-      <input type="text" id="doll-note" placeholder="例：スイーツの魔法で誕生">
-    </div>
-    <div class="field">
-      <label>キャラクターイメージメモ</label>
-      <textarea id="chara-memo" rows="2" placeholder="自由記述"></textarea>
-    </div>
+
+    <footer>
+      <p>
+        koro*mi &nbsp;|&nbsp;
+        <a href="https://x.com/koro_mi_illust" target="_blank" rel="noopener">X</a> &nbsp;·&nbsp;
+        <a href="https://egaite.art/ja/users/koromi" target="_blank" rel="noopener">EGAITE</a> &nbsp;·&nbsp;
+        <a href="./patisserie-dolls/">Patisserie Dolls</a>
+      </p>
+      <p style="margin-top:8px;">© koro*mi — All rights reserved.</p>
+    </footer>
+
   </div>
-</div>
-
-<!-- カラーパレット -->
-<div class="section">
-  <div class="section-head">■ カラーパレット（このキャラ固有）</div>
-  <div class="section-body">
-    <div class="field">
-      <label>メインカラー A（ベース）</label>
-      <div class="color-row">
-        <input type="color" id="color-a" value="#EAE3D4">
-        <input type="text" id="color-a-text" class="code" value="#EAE3D4">
-        <input type="text" id="color-a-name" class="name" placeholder="カラー名メモ">
-      </div>
-    </div>
-    <div class="field">
-      <label>メインカラー B（サブ）</label>
-      <div class="color-row">
-        <input type="color" id="color-b" value="#F4E8EB">
-        <input type="text" id="color-b-text" class="code" value="#F4E8EB">
-        <input type="text" id="color-b-name" class="name" placeholder="カラー名メモ">
-      </div>
-    </div>
-    <div class="field">
-      <label>アクセントカラー</label>
-      <div class="color-row">
-        <input type="color" id="color-c" value="#E2C1C2">
-        <input type="text" id="color-c-text" class="code" value="#E2C1C2">
-        <input type="text" id="color-c-name" class="name" placeholder="例：複数ある場合はメモ欄に記入">
-      </div>
-    </div>
-    <div class="field">
-      <label>肌・髪・瞳のトーンメモ</label>
-      <textarea id="tone-memo" rows="2" placeholder="例：肌：クリーム寄り白色 / 髪：薄茶色 / 瞳：赤（ややたれ目・ハイライト多め）"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- 衣装・アクセサリー -->
-<div class="section">
-  <div class="section-head">■ 衣装・アクセサリー</div>
-  <div class="section-body">
-    <div class="field">
-      <label>ヘッドアクセ</label>
-      <input type="text" id="head-acc" placeholder="例：苺の白い花の髪飾り、生クリームリボン">
-    </div>
-    <div class="field">
-      <label>リボンの位置</label>
-      <div class="tag-row" id="ribbon-tags">
-        <span class="tag" onclick="toggleTag(this)">髪</span>
-        <span class="tag" onclick="toggleTag(this)">耳</span>
-        <span class="tag" onclick="toggleTag(this)">首元</span>
-        <span class="tag" onclick="toggleTag(this)">肩</span>
-        <span class="tag" onclick="toggleTag(this)">腕</span>
-        <span class="tag" onclick="toggleTag(this)">袖→手首</span>
-        <span class="tag" onclick="toggleTag(this)">腰</span>
-        <span class="tag" onclick="toggleTag(this)">背中</span>
-        <span class="tag" onclick="toggleTag(this)">太もも</span>
-        <span class="tag" onclick="toggleTag(this)">足首</span>
-        <span class="tag" onclick="toggleTag(this)">スカート裾</span>
-      </div>
-    </div>
-    <div class="field">
-      <label>生地テクスチャ / 素材感メモ</label>
-      <input type="text" id="texture" placeholder="例：ふわふわ柔らかい生地、フリル多め">
-    </div>
-  </div>
-</div>
-
-<!-- 背景テンプレート -->
-<div class="section">
-  <div class="section-head">■ 背景テンプレート</div>
-  <div class="section-body">
-    <div class="field">
-      <label>背景パターン</label>
-      <div class="tag-row" id="bg-pattern-tags">
-        <span class="tag active" onclick="selectTag(this,'bg-pattern-tags')">ドット</span>
-        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ギンガムチェック</span>
-        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">無地</span>
-        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">ストライプ</span>
-        <span class="tag" onclick="selectTag(this,'bg-pattern-tags')">その他</span>
-      </div>
-    </div>
-    <div class="field">
-      <label>背景パターン　自由記入</label>
-      <input type="text" id="bg-pattern-free" placeholder="例：花柄、星散らし など">
-    </div>
-    <div class="field">
-      <label>背景ベースカラー</label>
-      <div class="color-row">
-        <input type="color" id="color-bg" value="#FFF9F7">
-        <input type="text" id="color-bg-text" class="code" value="#FFF9F7">
-        <input type="text" id="color-bg-name" class="name" placeholder="例：メインBの淡色">
-      </div>
-    </div>
-    <div class="field">
-      <label>フレーム装飾</label>
-      <input type="text" id="frame" placeholder="例：レースリボン（ベースカラーAに近い色）">
-    </div>
-  </div>
-</div>
-
-<!-- 共通仕様 -->
-<div class="section">
-  <div class="section-head">■ 共通仕様（固定）</div>
-  <div class="section-body">
-    <div class="row3">
-      <div class="field">
-        <label>頭身</label>
-        <input type="text" value="4頭身（ミニキャラ寄り）" readonly>
-      </div>
-      <div class="field">
-        <label>目のスタイル</label>
-        <input type="text" value="丸目" readonly>
-      </div>
-      <div class="field">
-        <label>ドール関節</label>
-        <input type="text" value="肩・肘・膝・手首にうっすら線" readonly>
-      </div>
-    </div>
-    <div class="row3">
-      <div class="field">
-        <label>シルエット</label>
-        <input type="text" value="Aラインドレス" readonly>
-      </div>
-      <div class="field">
-        <label>共通パーツ</label>
-        <input type="text" value="フリル裾 / リボン1箇所 / ヘッドアクセ" readonly>
-      </div>
-      <div class="field">
-        <label>共通小物</label>
-        <input type="text" value="フォーク" readonly>
-      </div>
-    </div>
-    <div class="field">
-      <label>影色ルール</label>
-      <input type="text" value="各カラーの同系色でトーンダウン（グレー影は使わない）" readonly>
-    </div>
-  </div>
-</div>
-
-<!-- パティスリーランド世界観 -->
-<div class="section">
-  <div class="section-head">■ パティスリーランド世界観（固定）</div>
-  <div class="section-body">
-    <div class="row2">
-      <div class="field">
-        <label>地形・環境</label>
-        <input type="text" value="雲は生クリーム、地面はクッキーやタルト生地" readonly>
-      </div>
-      <div class="field">
-        <label>天候</label>
-        <input type="text" value="シロップの雨が降る" readonly>
-      </div>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label>創造主</label>
-        <input type="text" value="パティシエ（お菓子に命を吹き込むあなた）" readonly>
-      </div>
-      <div class="field">
-        <label>今後の展開</label>
-        <input type="text" value="タルト、モンブラン、マカロンなどの仲間が増える予定" readonly>
-      </div>
-    </div>
-    <div class="field">
-      <label>世界観メモ（キャラ固有）</label>
-      <textarea id="world-memo" rows="2" placeholder="このキャラ固有の世界観・設定メモ"></textarea>
-    </div>
-  </div>
-</div>
-
-<!-- 書き出しボタン -->
-<div class="export-area">
-  <button class="btn-export" onclick="exportSheet()">テキストを書き出す</button>
-  <button class="btn-reset" onclick="resetSheet()">リセット</button>
-</div>
-
-<!-- 出力エリア -->
-<div class="output-wrap" id="output-wrap">
-  <textarea class="output-box" id="output-box" rows="30" readonly></textarea>
-  <button class="btn-copy" id="btn-copy" onclick="copyText()">コピーする</button>
-</div>
-
-<footer>Patisserie Dolls series &copy; koro*mi — All rights reserved. No AI learning.</footer>
-
-<script>
-function toggleTag(el) { el.classList.toggle('active'); }
-
-function selectTag(el, groupId) {
-  document.querySelectorAll('#' + groupId + ' .tag').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-}
-
-['color-a','color-b','color-c','color-bg'].forEach(id => {
-  const picker = document.getElementById(id);
-  const text   = document.getElementById(id + '-text');
-  picker.addEventListener('input', () => { text.value = picker.value.toUpperCase(); });
-  text.addEventListener('input', () => {
-    if (/^#[0-9A-Fa-f]{6}$/.test(text.value)) picker.value = text.value;
-  });
-});
-
-function getActiveTags(groupId) {
-  return Array.from(document.querySelectorAll('#' + groupId + ' .tag.active'))
-    .map(t => t.textContent).join('・') || '未選択';
-}
-
-function v(id) { return document.getElementById(id)?.value?.trim() || '未記入'; }
-
-function exportSheet() {
-  const patternTag = getActiveTags('bg-pattern-tags');
-  const patternFree = v('bg-pattern-free');
-  const patternText = patternFree !== '未記入'
-    ? patternTag + '（' + patternFree + '）'
-    : patternTag;
-
-  const lines = [
-    '=== Patisserie Dolls キャラクター設計書 ===',
-    '',
-    '■ 基本情報',
-    'キャラクター名：'       + v('chara-name'),
-    '愛称：'                 + v('nickname'),
-    'モチーフ：'             + v('motif'),
-    '誕生日：'               + v('birthday'),
-    '年齢イメージ：'         + v('age'),
-    '性格：'                 + v('personality'),
-    'チャームポイント：'     + v('charm'),
-    '衣装デザイン：'         + v('costume'),
-    '装備アイテム：'         + v('weapon'),
-    'ドール設定：'           + v('doll-note'),
-    'イメージメモ：'         + v('chara-memo'),
-    '',
-    '■ 共通仕様（固定）',
-    '頭身：4頭身（ミニキャラ寄り）',
-    '目：丸目',
-    'ドール関節：肩・肘・膝・手首にうっすら線',
-    'シルエット：Aラインドレス',
-    '共通パーツ：フリル裾 / リボン1箇所 / ケーキモチーフヘッドアクセ',
-    '共通小物：フォーク',
-    '影色：各カラーの同系色でトーンダウン（グレー影は使わない）',
-    '',
-    '■ カラーパレット',
-    'メインA：' + v('color-a-text') + '　' + v('color-a-name'),
-    'メインB：' + v('color-b-text') + '　' + v('color-b-name'),
-    'アクセント：' + v('color-c-text') + '　' + v('color-c-name'),
-    '肌・髪・瞳：' + v('tone-memo'),
-    '',
-    '■ 衣装・アクセサリー',
-    'ヘッドアクセ：'     + v('head-acc'),
-    'リボン位置：'       + getActiveTags('ribbon-tags'),
-    '生地テクスチャ：'   + v('texture'),
-    '',
-    '■ 背景テンプレート',
-    'パターン：'     + patternText,
-    '背景カラー：'   + v('color-bg-text') + '　' + v('color-bg-name'),
-    'フレーム：'     + v('frame'),
-    '',
-    '■ パティスリーランド世界観（固定）',
-    '地形・環境：雲は生クリーム、地面はクッキーやタルト生地',
-    '天候：シロップの雨が降る',
-    '創造主：パティシエ（お菓子に命を吹き込むあなた）',
-    '今後の展開：タルト、モンブラン、マカロンなどの仲間が増える予定',
-    '世界観メモ：' + v('world-memo'),
-  ];
-
-  const out  = document.getElementById('output-box');
-  const wrap = document.getElementById('output-wrap');
-  out.value  = lines.join('\n');
-  out.rows   = lines.length + 2;
-  wrap.classList.add('visible');
-  wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  const btn = document.getElementById('btn-copy');
-  btn.textContent = 'コピーする';
-  btn.className = 'btn-copy';
-}
-
-function copyText() {
-  const out = document.getElementById('output-box');
-  navigator.clipboard.writeText(out.value).then(() => {
-    const btn = document.getElementById('btn-copy');
-    btn.textContent = 'コピーしました！';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'コピーする';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
-}
-
-function resetSheet() {
-  ['chara-name','nickname','motif','birthday','age','personality','charm','costume','weapon',
-   'doll-note','chara-memo','head-acc','texture','frame','tone-memo','world-memo',
-   'color-a-name','color-b-name','color-c-name','color-bg-name','bg-pattern-free'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
-  });
-  [['color-a','#EAE3D4'],['color-b','#F4E8EB'],['color-c','#E2C1C2'],['color-bg','#FFF9F7']].forEach(([id, val]) => {
-    document.getElementById(id).value = val;
-    document.getElementById(id + '-text').value = val;
-  });
-  document.querySelectorAll('#ribbon-tags .tag').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#bg-pattern-tags .tag').forEach(t => t.classList.remove('active'));
-  document.querySelector('#bg-pattern-tags .tag:first-child').classList.add('active');
-  document.getElementById('output-wrap').classList.remove('visible');
-}
-</script>
 </body>
 </html>
